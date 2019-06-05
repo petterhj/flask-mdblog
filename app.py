@@ -1,15 +1,19 @@
 # Imports
+import configparser
 from flask import Flask, render_template
 from flask_flatpages import FlatPages, pygments_style_defs, pygmented_markdown
 
 
 # Config
+config = configparser.ConfigParser()
+config.read('flask-mdblog-dev.ini')
+config = config['app']
+
 config = {
-    'DEBUG': True,
-    'FLATPAGES_AUTO_RELOAD': True,
-    'FLATPAGES_ROOT': 'content/',
-    'FLATPAGES_CONTENT_URL': '/blog',
-    'FLATPAGES_MEDIA_URL': '/static/media',
+    'FLATPAGES_AUTO_RELOAD': config.getboolean('debug'),
+    'FLATPAGES_ROOT': config.get('content_root'),
+    'FLATPAGES_CONTENT_URL': config.get('content_url'),
+    'FLATPAGES_MEDIA_URL': config.get('content_url') + config.get('media_url'),
     'FLATPAGES_EXTENSION': '.md',
     'FLATPAGES_MARKDOWN_EXTENSIONS': [
         'codehilite', 'fenced_code', 'footnotes', 
