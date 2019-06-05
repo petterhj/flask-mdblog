@@ -5,7 +5,7 @@
 {% block content %}
  <article>
   {% if page.meta.header %}
-   <div class="cover" style="background-image: url('/static/media/{{ page.meta.header }}');"></div>
+   <div class="cover" style="background-image: url('{{ url_for('static', filename='media/'+page.meta.header) }}');"></div>
   {% endif %}
 
   <h1>{{ page.title }}</h1>
