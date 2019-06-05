@@ -6,7 +6,7 @@ from flask_flatpages import FlatPages, pygments_style_defs, pygmented_markdown
 
 # Config
 config = configparser.ConfigParser()
-config.read('flask-mdblog-dev.ini')
+config.read('flask-mdblog.ini')
 config = config['app']
 
 config = {
